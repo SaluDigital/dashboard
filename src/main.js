@@ -2,7 +2,7 @@ import './style.css';
 import IMask from 'imask';
 
 // --- CONFIGURATIONS ---
-const WEBHOOK_URL = 'https://automato.saludigital.com.br/webhook-test/63cecb4b-802c-4524-946e-6d800c0172e1';
+const WEBHOOK_URL = 'https://automato.saludigital.com.br/webhook/63cecb4b-802c-4524-946e-6d800c0172e1';
 
 // --- ELEMENT SELECTION ---
 const form = document.getElementById('customerForm');
