@@ -166,10 +166,16 @@ form.addEventListener('submit', async (e) => {
   // I'll send exactly what's in the form.
 
   try {
+    // We use URLSearchParams to avoid CORS preflight (OPTIONS) request
+    const params = new URLSearchParams();
+    for (const key in data) {
+      params.append(key, data[key]);
+    }
+
     const response = await fetch(WEBHOOK_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: params,
     });
 
     if (response.ok) {
