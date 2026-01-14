@@ -183,11 +183,13 @@ form.addEventListener('submit', async (e) => {
       cnpjGroup.classList.add('hidden');
       checkFormValidity();
     } else {
-      throw new Error('Falha no envio');
+      const errorText = await response.text();
+      console.error(`Status: ${response.status} - ${errorText}`);
+      throw new Error(`Falha no envio: ${response.status}`);
     }
   } catch (error) {
-    showToast('Erro ao enviar dados. Tente novamente.', 'error');
-    console.error(error);
+    showToast('Erro ao enviar dados. Verifique se o webhook do n8n está ativo.', 'error');
+    console.error('Erro detalhado:', error);
   } finally {
     submitBtn.textContent = 'Finalizar';
     submitBtn.disabled = false;
