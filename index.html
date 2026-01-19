@@ -1,123 +1,357 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/javascript.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cadastro de Clientes | Painel Profissional</title>
-  </head>
-  <body>
-    <div class="container">
-      <header>
-        <h1>Cadastro de Cliente</h1>
-        <p>Preencha os dados abaixo para registrar o novo cliente no sistema.</p>
-      </header>
 
-      <form id="customerForm">
-        <!-- Nome do Cliente -->
-        <div class="form-group full-width">
-          <label for="name">Nome do Cliente<span>*</span></label>
-          <input type="text" id="name" name="name" placeholder="Nome completo" required />
-          <span class="error-message">Este campo é obrigatório.</span>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/javascript.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cadastro de Clientes | Painel Profissional</title>
+  <link rel="stylesheet" href="./src/style.css">
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>Cadastro de Cliente</h1>
+      <p>Preencha os dados abaixo para registrar o novo cliente no sistema.</p>
+    </header>
+
+    <form id="formularioCliente">
+      <!-- Nome do Cliente -->
+      <div class="form-group full-width">
+        <label for="nome">Nome do Cliente<span>*</span></label>
+        <input type="text" id="nome" name="nome" placeholder="Nome completo" required />
+        <span class="error-message">Este campo é obrigatório.</span>
+      </div>
+
+      <!-- Responsável Comercial (Vendedor) -->
+      <div class="form-group">
+        <label for="vendedor">Responsável Comercial (Vendedor)<span>*</span></label>
+        <select id="vendedor" name="vendedor" required>
+          <option value="" disabled selected>Selecione um vendedor</option>
+          <option value="Thiago">Thiago</option>
+          <option value="Outro">Outro</option>
+        </select>
+        <span class="error-message">Selecione uma opção.</span>
+      </div>
+
+      <!-- Área de Atuação -->
+      <div class="form-group">
+        <label for="areaAtuacao">Área de Atuação<span>*</span></label>
+        <input type="text" id="areaAtuacao" name="areaAtuacao" placeholder="Ex: Tecnologia, Varejo" required />
+        <span class="error-message">Este campo é obrigatório.</span>
+      </div>
+
+      <!-- Objetivo do Projeto -->
+      <div class="form-group full-width">
+        <label for="objetivoProjeto">Objetivo do Projeto<span>*</span></label>
+        <textarea id="objetivoProjeto" name="objetivoProjeto" rows="3" placeholder="Descreva brevemente o objetivo"
+          required></textarea>
+        <span class="error-message">Este campo é obrigatório.</span>
+      </div>
+
+      <!-- Data de Nascimento -->
+      <div class="form-group">
+        <label for="dataNascimento">Data de Nascimento<span>*</span></label>
+        <input type="date" id="dataNascimento" name="dataNascimento" required />
+        <span class="error-message">Data inválida.</span>
+      </div>
+
+      <!-- CPF -->
+      <div class="form-group">
+        <label for="cpf">CPF<span>*</span></label>
+        <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00" required />
+        <span class="error-message">CPF inválido.</span>
+      </div>
+
+      <!-- Cliente é CNPJ? -->
+      <div class="form-group">
+        <label>Cliente é CNPJ?<span>*</span></label>
+        <div class="radio-group">
+          <label class="radio-option">
+            <input type="radio" name="temCnpj" value="Não" checked /> Não
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="temCnpj" value="Sim" /> Sim
+          </label>
         </div>
+      </div>
 
-        <!-- Responsável Comercial (Vendedor) -->
-        <div class="form-group">
-          <label for="salesRep">Responsável Comercial (Vendedor)<span>*</span></label>
-          <select id="salesRep" name="salesRep" required>
-            <option value="" disabled selected>Selecione um vendedor</option>
-            <option value="Thiago">Thiago</option>
-            <option value="Outro">Outro</option>
-          </select>
-          <span class="error-message">Selecione uma opção.</span>
+      <!-- CNPJ (Condicional) -->
+      <div id="grupoCnpj" class="form-group hidden">
+        <label for="cnpj">CNPJ<span>*</span></label>
+        <input type="text" id="cnpj" name="cnpj" placeholder="00.000.000/0000-00" />
+        <span class="error-message">CNPJ inválido.</span>
+      </div>
+
+      <!-- CEP -->
+      <div class="form-group">
+        <label for="cep">CEP<span>*</span></label>
+        <input type="text" id="cep" name="cep" placeholder="00000-000" required />
+        <span class="error-message">CEP inválido.</span>
+      </div>
+
+      <!-- Endereço Completo -->
+      <div class="form-group full-width">
+        <label for="endereco">Endereço Completo<span>*</span></label>
+        <textarea id="endereco" name="endereco" rows="2" placeholder="Rua, número, bairro, cidade, estado"
+          required></textarea>
+        <span class="error-message">Este campo é obrigatório.</span>
+      </div>
+
+      <!-- WhatsApp -->
+      <div class="form-group">
+        <label for="whatsapp">WhatsApp<span>*</span></label>
+        <input type="text" id="whatsapp" name="whatsapp" placeholder="(00) 00000-0000" required />
+        <span class="error-message">WhatsApp inválido (9 dígitos + DDD).</span>
+      </div>
+
+      <!-- Telefone -->
+      <div class="form-group">
+        <label for="telefone">Telefone (Opcional)</label>
+        <input type="text" id="telefone" name="telefone" placeholder="(00) 0000-0000" />
+        <span class="error-message">Telefone inválido.</span>
+      </div>
+
+      <!-- SEÇÃO: DADOS FINANCEIROS -->
+      <h2 class="section-header">Dados Financeiros</h2>
+
+      <div class="form-group">
+        <label for="emailFinanceiro">Email Financeiro<span>*</span></label>
+        <input type="email" id="emailFinanceiro" name="emailFinanceiro" placeholder="exemplo@empresa.com" required />
+        <span class="error-message">E-mail inválido.</span>
+      </div>
+
+      <div class="form-group">
+        <label for="telefoneFinanceiro">Telefone Financeiro<span>*</span></label>
+        <input type="text" id="telefoneFinanceiro" name="telefoneFinanceiro" placeholder="(00) 00000-0000" required />
+        <span class="error-message">Telefone inválido.</span>
+      </div>
+
+      <!-- SEÇÃO: PLANO -->
+      <h2 class="section-header">Qual o PLANO contratado</h2>
+
+      <div class="form-group full-width">
+        <div class="checkbox-group">
+          <label class="checkbox-option"><input type="checkbox" name="plano" value="Website"> Website</label>
+          <label class="checkbox-option"><input type="checkbox" name="plano" value="Identidade Visual"> Identidade
+            Visual</label>
+          <label class="checkbox-option"><input type="checkbox" name="plano" value="Mídias Ads" id="chkMidias"> Mídias
+            Ads</label>
+          <label class="checkbox-option"><input type="checkbox" name="plano" value="Google Ads" id="chkGoogle"> Google
+            Ads</label>
+          <label class="checkbox-option"><input type="checkbox" name="plano" value="Combo Ultra" id="chkUltra"> Combo
+            Ultra</label>
+          <label class="checkbox-option"><input type="checkbox" name="plano" value="Produção de Vídeos"> Produção de
+            Vídeos</label>
+          <label class="checkbox-option"><input type="checkbox" name="plano" value="CRM"> CRM</label>
+          <label class="checkbox-option"><input type="checkbox" name="plano" value="Outros"> Outros</label>
         </div>
+      </div>
 
-        <!-- Área de Atuação -->
-        <div class="form-group">
-          <label for="expertise">Área de Atuação<span>*</span></label>
-          <input type="text" id="expertise" name="expertise" placeholder="Ex: Tecnologia, Varejo" required />
-          <span class="error-message">Este campo é obrigatório.</span>
+      <!-- Campos de valores (Condicionais) -->
+      <div id="grupoValorMidias" class="form-group hidden">
+        <label for="valorMidias">Valor Mídias Ads<span>*</span></label>
+        <input type="text" id="valorMidias" name="valorMidias" placeholder="R$ 0,00" />
+      </div>
+
+      <div id="grupoValorGoogle" class="form-group hidden">
+        <label for="valorGoogle">Valor Google Ads<span>*</span></label>
+        <input type="text" id="valorGoogle" name="valorGoogle" placeholder="R$ 0,00" />
+      </div>
+
+      <div id="grupoValorUltra" class="form-group hidden">
+        <label for="valorUltra">Valor Combo Ultra<span>*</span></label>
+        <input type="text" id="valorUltra" name="valorUltra" placeholder="R$ 0,00" />
+      </div>
+
+      <!-- SEÇÃO: ENTREGAS EXTRAS -->
+      <h2 class="section-header">Entregas Extras</h2>
+      <div class="form-group full-width">
+        <div class="checkbox-group">
+          <label class="checkbox-option"><input type="checkbox" name="entregasExtras" value="Nenhuma"> Nenhuma</label>
+          <label class="checkbox-option"><input type="checkbox" name="entregasExtras" value="Cartão Virtual"> Cartão
+            Virtual</label>
+          <label class="checkbox-option"><input type="checkbox" name="entregasExtras" value="Portfólio">
+            Portfólio</label>
+          <label class="checkbox-option"><input type="checkbox" name="entregasExtras" value="Fachada"> Fachada</label>
+          <label class="checkbox-option"><input type="checkbox" name="entregasExtras" value="Outdoor"> Outdoor</label>
+          <label class="checkbox-option"><input type="checkbox" name="entregasExtras" value="Prazo Diferenciado"> Prazo
+            Diferenciado</label>
+          <label class="checkbox-option"><input type="checkbox" name="entregasExtras" value="Hospedagem de Email">
+            Hospedagem de Email</label>
+          <label class="checkbox-option"><input type="checkbox" name="entregasExtras" value="Franquia"> Franquia</label>
         </div>
+      </div>
 
-        <!-- Objetivo do Projeto -->
-        <div class="form-group full-width">
-          <label for="projectGoal">Objetivo do Projeto<span>*</span></label>
-          <textarea id="projectGoal" name="projectGoal" rows="3" placeholder="Descreva brevemente o objetivo" required></textarea>
-          <span class="error-message">Este campo é obrigatório.</span>
+      <div class="form-group full-width">
+        <label for="outrasEntregasEspecificadas">Existe alguma outra entrega extra não especificada anteriormente neste
+          formulário?</label>
+        <textarea id="outrasEntregasEspecificadas" name="outrasEntregasEspecificadas" rows="2"
+          placeholder="Descreva aqui, se houver"></textarea>
+      </div>
+
+      <!-- SEÇÃO: PRÉ-ONBOARDING -->
+      <h2 class="section-header">Pré-Onboarding</h2>
+
+      <div class="form-group full-width">
+        <label for="nomeDivulgacao">Nome de divulgação<span>*</span></label>
+        <p class="field-hint">Precisamos saber exatamente qual será o nome que você pretende usar na divulgação</p>
+        <input type="text" id="nomeDivulgacao" name="nomeDivulgacao" placeholder="Digite aqui" required />
+        <span class="error-message">Este campo é obrigatório.</span>
+      </div>
+
+      <div class="form-group full-width">
+        <label for="nomesResponsaveis">Nome dos responsáveis<span>*</span></label>
+        <p class="field-hint">Coloque aqui os nomes dos responsáveis pela empresa, pelo financeiro da empresa e pelo
+          atendimento.</p>
+        <input type="text" id="nomesResponsaveis" name="nomesResponsaveis" placeholder="Digite aqui" required />
+        <span class="error-message">Este campo é obrigatório.</span>
+      </div>
+
+      <div class="form-group">
+        <label>Possui Identidade Visual?</label>
+        <div class="radio-group">
+          <label class="radio-option"><input type="radio" name="possuiIdentidadeVisual" value="Sim"> Sim</label>
+          <label class="radio-option"><input type="radio" name="possuiIdentidadeVisual" value="Não" checked> Não</label>
         </div>
+      </div>
 
-        <!-- Data de Nascimento -->
-        <div class="form-group">
-          <label for="birthDate">Data de Nascimento<span>*</span></label>
-          <input type="date" id="birthDate" name="birthDate" required />
-          <span class="error-message">Data inválida.</span>
+      <div class="form-group full-width">
+        <label for="observacoesPreOnboarding">Observações</label>
+        <p class="field-hint">Coloque aqui observações sobre o cliente</p>
+        <textarea id="observacoesPreOnboarding" name="observacoesPreOnboarding" rows="2"></textarea>
+      </div>
+
+      <div class="form-group full-width">
+        <label for="referenciasImagens">Referências</label>
+        <p class="field-hint">Imagens</p>
+        <input type="file" id="referenciasImagens" name="referenciasImagens" accept="image/*" multiple />
+      </div>
+
+
+      <div class="form-group full-width">
+        <label>Possui domínio?<span>*</span></label>
+        <p class="field-hint">Para Clientes de Site e Google</p>
+        <div class="radio-group flex-column">
+          <label class="radio-option"><input type="radio" name="possuiDominio" value="Sim" required> Sim</label>
+          <label class="radio-option">
+            <input type="radio" name="possuiDominio"
+              value="Não. Foi orientado em relação a compra que pode ser intermediada pela SaluDital, ou ele pode fazer acessando o registro.br">
+            Não. Foi orientado em relação a compra que pode ser intermediada pela SaluDital, ou ele pode fazer acessando
+            o registro.br
+          </label>
         </div>
+      </div>
 
-        <!-- CPF -->
-        <div class="form-group">
-          <label for="cpf">CPF<span>*</span></label>
-          <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00" required />
-          <span class="error-message">CPF inválido.</span>
+      <div class="form-group full-width">
+        <label>Deseja Blog?<span>*</span></label>
+        <div class="radio-group flex-column">
+          <label class="radio-option">
+            <input type="radio" name="desejaBlog" value="Sim, Cliente está ciente de que o conteúdo deve vir dele."
+              required>
+            Sim, Cliente está ciente de que o conteúdo deve vir dele.
+          </label>
+          <label class="radio-option"><input type="radio" name="desejaBlog" value="Não"> Não</label>
         </div>
+      </div>
 
-        <!-- Cliente é CNPJ? -->
-        <div class="form-group">
-          <label>Cliente é CNPJ?<span>*</span></label>
-          <div class="radio-group">
-            <label class="radio-option">
-              <input type="radio" name="isCnpj" value="Não" checked /> Não
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="isCnpj" value="Sim" /> Sim
-            </label>
-          </div>
+      <div class="form-group full-width">
+        <label>Orientado em relação ao Setup?<span>*</span></label>
+        <p class="field-hint">Para clientes de site, e google</p>
+        <div class="radio-group flex-column">
+          <label class="radio-option"><input type="radio" name="orientadoSetup" value="Sim" required> Sim</label>
+          <label class="radio-option"><input type="radio" name="orientadoSetup" value="Não"> Não</label>
         </div>
+      </div>
 
-        <!-- CNPJ (Condicional) -->
-        <div id="cnpjGroup" class="form-group hidden">
-          <label for="cnpj">CNPJ<span>*</span></label>
-          <input type="text" id="cnpj" name="cnpj" placeholder="00.000.000/0000-00" />
-          <span class="error-message">CNPJ inválido.</span>
+      <div class="form-group full-width">
+        <label for="procedimentosFoco">Quais os procedimentos e áreas o cliente tem foco?<span>*</span></label>
+        <textarea id="procedimentosFoco" name="procedimentosFoco" rows="3" placeholder="Digite aqui"
+          required></textarea>
+        <span class="error-message">Este campo é obrigatório.</span>
+      </div>
+
+      <div class="form-group">
+        <label>Tem redes sociais?<span>*</span></label>
+        <div class="radio-group">
+          <label class="radio-option"><input type="radio" name="temRedesSociais" value="Sim" required> Sim</label>
+          <label class="radio-option"><input type="radio" name="temRedesSociais" value="Não"> Não</label>
         </div>
+      </div>
 
-        <!-- CEP -->
-        <div class="form-group">
-          <label for="cep">CEP<span>*</span></label>
-          <input type="text" id="cep" name="cep" placeholder="00000-000" required />
-          <span class="error-message">CEP inválido.</span>
+      <div class="form-group">
+        <label>Possui Google Meu Negócio?<span>*</span></label>
+        <div class="radio-group">
+          <label class="radio-option"><input type="radio" name="possuiGoogleNegocio" value="Sim" required> Sim</label>
+          <label class="radio-option"><input type="radio" name="possuiGoogleNegocio" value="Não"> Não</label>
         </div>
+      </div>
 
-        <!-- Endereço Completo -->
-        <div class="form-group full-width">
-          <label for="address">Endereço Completo<span>*</span></label>
-          <textarea id="address" name="address" rows="2" placeholder="Rua, número, bairro, cidade, estado" required></textarea>
-          <span class="error-message">Este campo é obrigatório.</span>
+      <div class="form-group full-width">
+        <label for="metaCliente">Qual a meta do cliente? Orientado referente às metas compatíveis ao
+          investimento?<span>*</span></label>
+        <p class="field-hint">Diga o que foi falado com o cliente sobre as metas e o que ele espera de nós para
+          perseguirmos juntos.</p>
+        <textarea id="metaCliente" name="metaCliente" rows="3" placeholder="Digite aqui" required></textarea>
+        <span class="error-message">Este campo é obrigatório.</span>
+      </div>
+
+      <!-- SEÇÃO: CHECKLIST FINAL -->
+      <h2 class="section-header">Check list Final</h2>
+      <p class="section-hint">Selecione as opções de acordo com a orientação dada e listada.</p>
+
+      <div class="form-group full-width">
+        <div class="checkbox-group flex-column">
+          <label class="checkbox-option"><input type="checkbox" name="checklistFinal" value="Possui Logo"> Possui
+            Logo</label>
+          <label class="checkbox-option"><input type="checkbox" name="checklistFinal"
+              value="Possui domínio, ou foi orientado referente a aquisição"> Possui domínio, ou foi orientado referente
+            a aquisição</label>
+          <label class="checkbox-option"><input type="checkbox" name="checklistFinal"
+              value="Orientado em relação ao Setup"> Orientado em relação ao Setup</label>
+          <label class="checkbox-option"><input type="checkbox" name="checklistFinal"
+              value="Cliente ciente de como funciona o processo de buscas do Google e que o investimento mínimo não é garantia de primeiras posições?">
+            Cliente ciente de como funciona o processo de buscas do Google e que o investimento mínimo não é garantia de
+            primeiras posições?</label>
+          <label class="checkbox-option"><input type="checkbox" name="checklistFinal"
+              value="Orientado referente ao Funil de Vendas mínimo se ele ainda não tiver um funil formado?"> Orientado
+            referente ao Funil de Vendas mínimo se ele ainda não tiver um funil formado?</label>
+          <label class="checkbox-option"><input type="checkbox" name="checklistFinal"
+              value="Orientado referente a metodologia (CRM, feedback em números, reuniões de alinhamento, permanência mínima, pagamento da mensalidade e impulsionamento)">
+            Orientado referente a metodologia (CRM, feedback em números, reuniões de alinhamento, permanência mínima,
+            pagamento da mensalidade e impulsionamento)</label>
+          <label class="checkbox-option"><input type="checkbox" name="checklistFinal"
+              value="Orientado sobre a importância da equipe de atendimento no fluxo, capacitações e suporte necessário para a equipe de vendas.">
+            Orientado sobre a importância da equipe de atendimento no fluxo, capacitações e suporte necessário para a
+            equipe de vendas.</label>
+          <label class="checkbox-option"><input type="checkbox" name="checklistFinal"
+              value="Cliente ciente de que o período mínimo para considerar ter resultado é de pelo menos 3 meses? E que mesmo nesse periodo o marketing é um processo de longo prazo?">
+            Cliente ciente de que o período mínimo para considerar ter resultado é de pelo menos 3 meses? E que mesmo
+            nesse periodo o marketing é um processo de longo prazo?</label>
+          <label class="checkbox-option"><input type="checkbox" name="checklistFinal"
+              value="Mandamos referências de logo já feitas por nós?"> Mandamos referências de logo já feitas por
+            nós?</label>
+          <label class="checkbox-option"><input type="checkbox" name="checklistFinal"
+              value="Confirmado os itens padrões da papelaria digital?"> Confirmado os itens padrões da papelaria
+            digital?</label>
         </div>
+      </div>
 
-        <!-- WhatsApp -->
-        <div class="form-group">
-          <label for="whatsapp">WhatsApp<span>*</span></label>
-          <input type="text" id="whatsapp" name="whatsapp" placeholder="(00) 00000-0000" required />
-          <span class="error-message">WhatsApp inválido (9 dígitos + DDD).</span>
-        </div>
 
-        <!-- Telefone -->
-        <div class="form-group">
-          <label for="phone">Telefone (Opcional)</label>
-          <input type="text" id="phone" name="phone" placeholder="(00) 0000-0000" />
-          <span class="error-message">Telefone inválido (8 dígitos + DDD).</span>
-        </div>
 
-        <!-- Botão de Ação -->
-        <div class="btn-container">
-          <button type="submit" id="submitBtn">Finalizar</button>
-        </div>
-      </form>
-    </div>
 
-    <!-- Toast message container -->
-    <div id="toast"></div>
+      <!-- Botão de Ação -->
+      <div class="btn-container">
+        <button type="submit" id="submitBtn">Finalizar</button>
+      </div>
+    </form>
+  </div>
 
-    <script type="module" src="/src/main.js"></script>
-  </body>
+  <!-- Toast message container -->
+  <div id="toast"></div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+
 </html>
