@@ -66,10 +66,16 @@ export async function getCurrentUser() {
     return user;
 }
 
-// Update user password
-export async function updatePassword(newPassword) {
-    const { data, error } = await supabase.auth.updateUser({
-        password: newPassword
-    });
+// Update user profile (display name and optional password)
+export async function updateProfile({ displayName, password }) {
+    const updateData = {
+        data: { full_name: displayName }
+    };
+
+    if (password) {
+        updateData.password = password;
+    }
+
+    const { data, error } = await supabase.auth.updateUser(updateData);
     return { data, error };
 }
