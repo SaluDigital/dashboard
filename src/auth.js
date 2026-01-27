@@ -9,13 +9,13 @@ const authError = document.getElementById('auth-error');
 async function checkCurrentSession() {
     const { data: { session } } = await supabase.auth.getSession();
     if (session) {
-        window.location.href = 'index.html';
+        if (window.location.pathname.endsWith('login.html')) {
+            window.location.href = 'index.html';
+        }
     }
 }
 
-if (window.location.pathname.endsWith('login.html') || window.location.pathname === '/login') {
-    checkCurrentSession();
-}
+checkCurrentSession();
 
 if (loginForm) {
     loginForm.addEventListener('submit', async (e) => {
@@ -58,4 +58,18 @@ export async function logout() {
     const { error } = await supabase.auth.signOut();
     if (error) console.error('Error signing out:', error.message);
     window.location.href = 'login.html';
+}
+
+// Get current user session
+export async function getCurrentUser() {
+    const { data: { user } } = await supabase.auth.getUser();
+    return user;
+}
+
+// Update user password
+export async function updatePassword(newPassword) {
+    const { data, error } = await supabase.auth.updateUser({
+        password: newPassword
+    });
+    return { data, error };
 }
