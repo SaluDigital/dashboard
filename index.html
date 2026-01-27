@@ -7,13 +7,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cadastro de Clientes | Painel Profissional</title>
   <link rel="stylesheet" href="./src/style.css">
+  <script type="module">
+    import { supabase } from './src/lib/supabase.js';
+
+    // Auth Guard: Immediate check before page renders
+    async function checkAuth() {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) {
+        window.location.href = 'login.html';
+      } else {
+        document.body.style.display = 'flex'; // Show body only if authenticated
+      }
+    }
+    checkAuth();
+  </script>
 </head>
 
-<body>
+<body style="display: none;">
   <div class="container">
     <header>
-      <h1>Cadastro de Cliente</h1>
-      <p>Preencha os dados abaixo para registrar o novo cliente no sistema.</p>
+      <div style="display: flex; justify-content: space-between; align-items: start; width: 100%;">
+        <div>
+          <h1>Cadastro de Cliente</h1>
+          <p>Preencha os dados abaixo para registrar o novo cliente no sistema.</p>
+        </div>
+        <button id="logoutBtn"
+          style="width: auto; padding: 0.5rem 1rem; font-size: 0.9rem; background: #fee2e2; color: #b91c1c; box-shadow: none;">Sair</button>
+      </div>
     </header>
 
     <form id="formularioCliente">
@@ -345,6 +365,10 @@
   <div id="toast"></div>
 
   <script type="module" src="/src/main.js"></script>
+  <script type="module">
+    import { logout } from './src/auth.js';
+    document.getElementById('logoutBtn')?.addEventListener('click', logout);
+  </script>
 </body>
 
 </html>
