@@ -26,8 +26,8 @@
 <body style="display: none;">
   <div class="container">
     <header>
-      <div style="text-align: left; margin-bottom: 2rem;">
-        <img src="/logo.png" alt="SaluDigital Logo" style="max-width: 200px; height: auto;">
+      <div style="text-align: left; margin-bottom: 1rem;">
+        <img src="/logo.png" alt="SaluDigital Logo" style="max-width: 260px; height: auto;">
       </div>
       <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 0.5rem; width: 100%;">
         <div id="userGreeting" style="font-size: 0.9rem; color: var(--text-muted); font-weight: 500;">Olá, ...</div>
@@ -60,7 +60,14 @@
         <label for="vendedor">Responsável Comercial (Vendedor)<span>*</span></label>
         <select id="vendedor" name="vendedor" required>
           <option value="" disabled selected>Selecione um vendedor</option>
+          <option value="Bruno">Bruno</option>
+          <option value="Caroline">Caroline</option>
+          <option value="Denis">Denis</option>
+          <option value="Djionathan">Djionathan</option>
+          <option value="Giancarlo">Giancarlo</option>
+          <option value="Isabelly">Isabelly</option>
           <option value="Thiago">Thiago</option>
+          <option value="Vitor">Vitor</option>
           <option value="Outro">Outro</option>
         </select>
         <span class="error-message">Selecione uma opção.</span>
@@ -386,17 +393,17 @@
     style="position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 2000; backdrop-filter: blur(4px);">
     <div class="login-card" style="width: 100%; max-width: 400px; margin: 0 1rem;">
       <div class="login-header" style="margin-bottom: 2rem;">
-        <h2 style="font-size: 1.5rem; font-weight: 700; color: var(--primary);">Atualizar Dados</h2>
-        <p style="font-size: 0.9rem; color: var(--text-muted);">Altere sua senha de acesso abaixo</p>
+        <h2 style="font-size: 1.5rem; font-weight: 700; color: #ffffff;">Atualizar Dados</h2>
+        <p style="font-size: 0.9rem; color: #e2e8f0;">Altere sua senha de acesso abaixo</p>
       </div>
       <form id="updateProfileForm" style="display: flex; flex-direction: column; gap: 1rem;">
         <div class="form-group">
-          <label for="newPassword">Nova Senha</label>
+          <label for="newPassword" style="color: #ffffff;">Nova Senha</label>
           <input type="password" id="newPassword" name="newPassword" placeholder="Mínimo 6 caracteres" required
             minlength="6">
         </div>
         <div class="form-group">
-          <label for="confirmNewPassword">Confirmar Nova Senha</label>
+          <label for="confirmNewPassword" style="color: #ffffff;">Confirmar Nova Senha</label>
           <input type="password" id="confirmNewPassword" name="confirmNewPassword" placeholder="Repita a nova senha"
             required minlength="6">
         </div>
