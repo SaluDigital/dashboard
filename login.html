@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | Painel Profissional</title>
+    <title>Login | SaluDigital</title>
     <link rel="stylesheet" href="./src/style.css">
     <style>
         .login-container {
@@ -19,6 +19,7 @@
             border-radius: var(--radius-lg);
             box-shadow: var(--shadow-xl);
             border: 1px solid rgba(255, 255, 255, 0.5);
+            margin-top: 2rem;
         }
 
         .login-header {
@@ -26,10 +27,20 @@
             margin-bottom: 2.5rem;
         }
 
+        .logo-container {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .logo-container img {
+            max-width: 220px;
+            height: auto;
+        }
+
         .login-header h1 {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 700;
-            background: linear-gradient(to right, #4f46e5, #9333ea);
+            background: var(--brand-gradient);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -38,11 +49,14 @@
 
         .login-header p {
             color: var(--text-muted);
-            font-size: 1rem;
+            font-size: 0.95rem;
         }
 
         .form-group {
             margin-bottom: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
         }
 
         .auth-btn {
@@ -76,20 +90,28 @@
             margin-bottom: 1.5rem;
             display: none;
         }
+
+        input:focus {
+            border-color: var(--accent) !important;
+            box-shadow: 0 0 0 4px rgba(128, 203, 212, 0.1) !important;
+        }
     </style>
 </head>
 
 <body>
     <div class="login-container">
+        <div class="logo-container">
+            <img src="/logo.png" alt="SaluDigital Logo">
+        </div>
         <div class="login-card">
             <div class="login-header">
                 <h1>Benvindo de Volta</h1>
-                <p>Acesse sua conta para gerenciar clientes</p>
+                <p>Acesse o painel administrativo</p>
             </div>
 
             <div id="auth-error">Email ou senha incorretos.</div>
 
-            <form id="loginForm" style="display: flex; flex-direction: column; gap: 1.5rem;">
+            <form id="loginForm" style="display: flex; flex-direction: column; gap: 0.5rem;">
                 <div class="form-group">
                     <label for="email">E-mail</label>
                     <input type="email" id="email" name="email" placeholder="seu@email.com" required>
